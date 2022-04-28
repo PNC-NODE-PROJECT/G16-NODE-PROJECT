@@ -5,7 +5,11 @@ body{
     font-family: 'Times New Roman', Times, serif;
 }
 /* -------------------------koev---------- */
-
+nav{
+    position:static;
+    top: 0;
+}
+/*  */
 input{
     margin-top: 10px;
     padding: 5px;
@@ -110,4 +114,25 @@ dialog  ::placeholder{
     margin: 5px;
     border:none;
     border-radius:10px;
+}
+.delete_edit{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0.5em;
+
+}
+.delete_edit a{
+    margin: 10px;
+    text-decoration: none;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-radius: 5px;
+    color: white;
+}
+.delete_edit .delete{
+    background:rgb(132, 3, 3);
+   
+}
+.delete_edit .edit{
+    background:rgb(9, 9, 138);
 }

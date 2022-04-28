@@ -28,15 +28,14 @@ let add_questions = (questions,answer_a,answer_b,answer_c,answer_d,correct_answe
 
 // remove question
 let remove_question = (id) => {
-    let questions = load_data()
-    let status = false
-    let index = questions.findIndex(question => question.id === id)
+    let questions = load_data();
+    let index = questions.findIndex(question => question.id === id);
+    console.log(index !== -1)
     if (index !== -1) {
         questions.splice(index, 1);
-        status = true
     }
     save_data(questions)
-    return status
+    // return status
 }
 
 //EXPORT

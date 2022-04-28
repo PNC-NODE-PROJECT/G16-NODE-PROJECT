@@ -26,10 +26,23 @@ let add_questions = (questions,answer_a,answer_b,answer_c,answer_d,correct_answe
     save_data(get_load_question);
 }
 
+// remove question
+let remove_question = (id) => {
+    let questions = load_data()
+    let status = false
+    let index = questions.findIndex(question => question.id === id)
+    if (index !== -1) {
+        questions.splice(index, 1);
+        status = true
+    }
+    save_data(questions)
+    return status
+}
 
 //EXPORT
-module.exports.get_all_question = get_all_question
-module.exports.load_data =load_data;
-module.exports.add_questions =add_questions;
-
-
+module.exports = {
+    get_all_question,
+    load_data,
+    add_questions,
+    remove_question
+}

@@ -20,6 +20,22 @@ router.post('/add_question',(req,res)=>{
     res.status(200).send({"MESSAGE":"SUCCESSFULL !"})
 })
 
+// delete question
+
+router.delete('/delete_question/:id', (req, res) => {
+    let id = req.params.id
+    let delete_question = data_models.remove_question(id)
+    if (delete_question) {
+        res.status(200).send({
+            "message": 'question deleted successfully'
+        })
+    } else {
+        res.status(404).send({
+            "message": 'question id not found'
+        })
+    }
+})
+
 
 //export 
 // console.log(dataModels.load_data());

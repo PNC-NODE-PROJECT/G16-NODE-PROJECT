@@ -27,9 +27,9 @@ let add_questions = (questions,answer_a,answer_b,answer_c,answer_d,correct_answe
 }
 
 
-
 //EXPORT
 module.exports.get_all_question = get_all_question
 module.exports.load_data =load_data;
 module.exports.add_questions =add_questions;
+
 

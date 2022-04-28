@@ -46,14 +46,5 @@
         "answer_b": "B",
         "answer_c": "C",
         "answer_d": "D"
-    },
-    {
-        "id": "53b0457d-3c62-4c13-bbb0-203cbe4e52ad",
-        "questions": "How old are you?",
-        "answer_a": "A",
-        "answer_b": "B",
-        "answer_c": "C",
-        "answer_d": "D",
-        "correct_answer": "D"
     }
 ]

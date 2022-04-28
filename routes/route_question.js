@@ -19,6 +19,8 @@ router.post('/add_question',(req,res)=>{
     data = data_models.add_questions(question,answer_a,answer_b,answer_c,answer_d,correct_answer);
     res.status(200).send({"MESSAGE":"SUCCESSFULL !"})
 })
+
+
 //export 
 // console.log(dataModels.load_data());
 module.exports = router;

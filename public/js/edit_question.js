@@ -1,5 +1,5 @@
 const dom_questions_view = document.getElementById("questions-view");
-
+const dom_questions_dialog = document.getElementById("questions-dialog");
 //display question and answer
 function display_questions(datas){
     dom_questions_container= document.getElementById("questions-container");
@@ -78,11 +78,39 @@ function display_questions(datas){
     }
     console.log(dom_questions_view);
 };
-
+//HIDE SHOW
+function hide(element) {
+    element.style.display = 'none';
+}
+function show(element) {
+    element.style.display = 'block';
+}
+function on_add_question(){
+    show(dom_questions_dialog);
+}
+hide(dom_questions_dialog);
+//get question from back-end
 function get_all_question() {
     axios.get("/api/question").then((res) => {
         display_questions(res.data);
         console.log(res.data);
     });
 }
+//create question 
+//@get value from font-end
+function create_question() {
+    hide(dom_questions_dialog);
+    let new_question ={};
+    new_question.question=document.getElementById('question').value;
+    new_question.correct_answer=document.getElementById('correctAnswer').value;
+    new_question.answer_1=document.getElementById('choiceA').value;
+    new_question.answer_2=document.getElementById('choiceB').value;
+    new_question.answer_3=document.getElementById('choiceC').value;
+    new_question.answer_4=document.getElementById('choiceD').value;
+    console.log(new_question)
+    
+}
+create_question()
+
+//
 get_all_question();

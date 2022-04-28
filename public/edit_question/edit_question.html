@@ -24,10 +24,51 @@
         <ul class="nav">
             <li> <a class="active nav-link m-2 text-white" href="../index.html">HOME</a></li>
             <li><a class="active nav-link m-2 text-white" href="../play/play_quiz.html">PLAY QUIZ</a></li>
-            <li><a class="active nav-link m-2 text-white" href="">ADD QUIZ</a></li>
+            <li><a class="active nav-link m-2 text-white" href="">EDIT QUIZ</a></li>
         </ul>
     </nav>
+    
+        <div id="questions-dialog" style="display: none;">
+                <dialog open>
+                    <header>Create New Question</header>
+        
+                    <section >
+                        <label for="">Question</label>
+                        <input type="text" class="form-control" id="question" placeholder="Enter Question">
+                        <label>Answer</label>
+                        <div class="d-flex">
+                            <div>
+                                <input  type="text" id="choiceA" placeholder="Answer A">
+                                <input type="text" id="choiceB" placeholder="Answer B">
+
+                            </div>
+                            <div>
+                                <input  type="text" id="choiceC" placeholder="Answer C">
+                                <input  type="text" id="choiceD" placeholder="Answer D">
+                               
+                            </div>
+                        </div>
+                        <label>Correct Answer</label>
+                        <select name="" id = "correctAnswer">
+                            <option value="A">Answer A</option>
+                            <option value="B">Answer B</option>
+                            <option value="C">Answer C</option>
+                            <option value="D">Answer D</option>
+                        </select>
+                    </section>
+                    <menu>
+                        <button id="create_question_button" onclick="create_question()">CREATE</button>
+                    </menu>
+                </dialog>
+
+        </div>
+    
+
     <div id="questions-view">
+        <div class="add_question_button">
+            <button onclick="on_add_question()">Add Question</button>
+
+        </div>
         <div id="questions-container"></div>
     </div>
 </body>

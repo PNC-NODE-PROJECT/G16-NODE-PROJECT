@@ -1,5 +1,7 @@
 const dom_questions_view = document.getElementById("questions-view");
 const dom_questions_dialog = document.getElementById("questions-dialog");
+const dom_add_question_button = document.getElementById("add_question_button");
+
 //display question and answer
 function display_questions(datas){
     dom_questions_container= document.getElementById("questions-container");
@@ -23,6 +25,8 @@ function display_questions(datas){
         question_info.className = "question-info";
         card_header.appendChild(question_info);
 
+      
+
         let question=document.createElement("spam");
         question.className = "question";
         question.textContent = data.questions;
@@ -42,7 +46,7 @@ function display_questions(datas){
 
         let answer_2 = document.createElement("div");
         answer_2.className = "answer";
-        answer_2.id="A";
+        answer_2.id="B";
         answer_2.style.background="red";
         let para_2 = document.createElement("p");
         answer_2.appendChild(para_2);
@@ -50,7 +54,7 @@ function display_questions(datas){
 
         let answer_3 = document.createElement("div");
         answer_3.className = "answer";
-        answer_3.id="A";
+        answer_3.id="C";
         answer_3.style.background="red";
         let para_3 = document.createElement("p");
         answer_3.appendChild(para_3);
@@ -58,7 +62,7 @@ function display_questions(datas){
 
         let answer_4 = document.createElement("div");
         answer_4.className = "answer";
-        answer_4.id="A";
+        answer_4.id="D";
         answer_4.style.background="red";
         let para_4 = document.createElement("p");
         answer_4.appendChild(para_4);
@@ -69,11 +73,18 @@ function display_questions(datas){
         answers_container.appendChild(answer_2);
         answers_container.appendChild(answer_3);
         answers_container.appendChild(answer_4);
-        answers_container.appendChild(hr)
+        answers_container.appendChild(hr);
 
         
         dom_questions_container.appendChild(card);
         card.appendChild(answers_container);
+
+        let answers = document.getElementById(question_id)
+        for(let element of answers.childNodes){
+            if(element.id==data.correct_answer){
+                element.style.background="green";
+            }
+        }
 
     }
     console.log(dom_questions_view);
@@ -87,6 +98,7 @@ function show(element) {
 }
 function on_add_question(){
     show(dom_questions_dialog);
+    hide(add_question_button);
 }
 hide(dom_questions_dialog);
 //get question from back-end
@@ -96,10 +108,16 @@ function get_all_question() {
         console.log(res.data);
     });
 }
+//cancel create form if we don't want to create 
+function cancel_create(){
+    hide(dom_questions_dialog);
+    show(add_question_button);
+}
 //create question 
 //@get value from font-end
 function create_question() {
     hide(dom_questions_dialog);
+    show(add_question_button);
     let new_question ={};
     new_question.question=document.getElementById('question').value;
     new_question.correct_answer=document.getElementById('correctAnswer').value;
@@ -107,8 +125,7 @@ function create_question() {
     new_question.answer_2=document.getElementById('choiceB').value;
     new_question.answer_3=document.getElementById('choiceC').value;
     new_question.answer_4=document.getElementById('choiceD').value;
-    console.log(new_question)
-    
+    axios.post("/api/add_question",new_question);
 }
 create_question()
 

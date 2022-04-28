@@ -57,6 +57,7 @@
                         </select>
                     </section>
                     <menu>
+                        <button id="cancel_create_question" onclick="cancel_create()">CANCEL</button>
                         <button id="create_question_button" onclick="create_question()">CREATE</button>
                     </menu>
                 </dialog>
@@ -66,7 +67,8 @@
 
     <div id="questions-view">
         <div class="add_question_button">
-            <button onclick="on_add_question()">Add Question</button>
+            
+            <button id="add_question_button" onclick="on_add_question()">Add Question</button>
 
         </div>
         <div id="questions-container"></div>

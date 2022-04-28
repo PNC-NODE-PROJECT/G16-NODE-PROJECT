@@ -72,7 +72,7 @@ dialog{
    
 }
 dialog header{
-    background: #000;
+    background: rgb(106, 104, 104);
     color: #fff;
     font-size: 1.12rem;
     width: 100%;
@@ -102,4 +102,12 @@ dialog input{
 }
 dialog  ::placeholder{
     color: rgb(240, 237, 237);
+}
+#cancel_create_question,#create_question_button{
+    background: rgb(57, 57, 57);
+    padding: 5px;
+    color: white;
+    margin: 5px;
+    border:none;
+    border-radius:10px;
 }

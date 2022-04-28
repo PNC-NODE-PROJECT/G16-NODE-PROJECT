@@ -11,10 +11,10 @@ router.get('/question',(req,res) =>{
 // add question
 router.post('/add_question',(req,res)=>{
     let question = req.body.question;
-    let answer_a = req.body.answer_a;
-    let answer_b = req.body.answer_b;
-    let answer_c = req.body.answer_c;
-    let answer_d = req.body.answer_d;
+    let answer_a = req.body.answer_1;
+    let answer_b = req.body.answer_2;
+    let answer_c = req.body.answer_3;
+    let answer_d = req.body.answer_3;
     let correct_answer = req.body.correct_answer;
     data = data_models.add_questions(question,answer_a,answer_b,answer_c,answer_d,correct_answer);
     res.status(200).send({"MESSAGE":"SUCCESSFULL !"})

@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended:true}));
 app.use(express.json());
 
 
+
 // Define static route
 app.use(express.static("public"));
 // router

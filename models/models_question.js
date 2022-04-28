@@ -1,13 +1,12 @@
 const fs = require('fs');
 const {v4: uuidv4}=require('uuid');
 
-const PATH= './data/data_question.json';
+const PATH= './data/data_student.json';
 
 let load_data = ()=>{
     return JSON.parse(fs.readFileSync(PATH));
 
 };
-// write data
 let save_data = (data)=>{
     fs.writeFileSync(PATH, JSON.stringify(data,null,4));
 }

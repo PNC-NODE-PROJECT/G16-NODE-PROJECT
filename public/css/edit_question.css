@@ -1,0 +1,43 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: rgb(224, 222, 222);
+    font-family: 'Times New Roman', Times, serif;
+}
+/* -------------------------koev---------- */
+
+input{
+    margin-top: 10px;
+    padding: 5px;
+    border-radius:5px;
+    border:none;
+    outline: none;
+}
+
+/*  */
+.container section .w-add{
+    width: 10%;
+    border-radius:5px ;
+    background: blue;
+    color: white;
+    border: none;
+}
+#questions-view #questions-container{
+    width: 60%;
+    margin: auto;
+}
+#questions-view #questions-container .card{
+    margin: 20px;
+}
+#questions-view #questions-container .card .card-header,.answer-container{
+    margin: 10px;
+}
+#questions-view #questions-container .card .card-header,.answer-container .answer{
+    padding: 5px;
+    margin-top: 10px;
+}
+.answer-container{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 10px;
+  }

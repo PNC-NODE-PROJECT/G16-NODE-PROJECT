@@ -156,8 +156,6 @@ function create_question() {
 
 
 }
-// create_question()
-//
 get_all_question();
 
 function click_tasks(e) {

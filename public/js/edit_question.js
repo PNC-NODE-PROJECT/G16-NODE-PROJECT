@@ -100,7 +100,7 @@ function display_questions(datas) {
 
         card.appendChild(a_delete);
         card.appendChild(a_edit);
-
+        //correct answer
         let answers = document.getElementById(question_id)
         for (let element of answers.childNodes) {
             if (element.id == data.correct_answer) {
@@ -152,12 +152,10 @@ function create_question() {
         console.log(res);
     });
 
-    // }
+    console.log(new_question);
 
 
 }
-// create_question()
-//
 get_all_question();
 
 function click_tasks(e) {

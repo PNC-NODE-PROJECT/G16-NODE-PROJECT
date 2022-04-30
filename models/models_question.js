@@ -30,11 +30,10 @@ let add_questions = (questions,answer_a,answer_b,answer_c,answer_d,correct_answe
 let remove_question = (id) => {
     let questions = load_data();
     let index = questions.findIndex(question => question.id === id);
-    console.log(index !== -1)
     if (index !== -1) {
         questions.splice(index, 1);
     }
-    save_data(questions)
+    save_data(questions);
     // return status
 }
 //edit one questions 
@@ -44,26 +43,26 @@ let edit_question=(edit_id,edit_question,edit_answer_a,edit_answer_b,edit_answer
     if(index >-1){
         let questions = load_data_edit[index];
         if(edit_question !== undefined){
-            questions.questions = edit_question
+            questions.questions = edit_question;
         }
         if(edit_answer_a !== undefined){
-            questions.answer_a = edit_answer_a
+            questions.answer_a = edit_answer_a;
         }
         if(edit_answer_b !== undefined){
-            questions.answer_b = edit_answer_b
+            questions.answer_b = edit_answer_b;
         }
         if(edit_answer_c !== undefined){
-            questions.answer_c = edit_answer_c
+            questions.answer_c = edit_answer_c;
         }
         if(edit_answer_d !== undefined){
-            questions.answer_d = edit_answer_d
+            questions.answer_d = edit_answer_d;
         }
         if(edit_correct_answer !== undefined){
-            questions.correct_answer = edit_correct_answer
+            questions.correct_answer = edit_correct_answer;
         }
         
     }
-    save_data(load_data_edit)
+    save_data(load_data_edit);
 }
 
 //EXPORT

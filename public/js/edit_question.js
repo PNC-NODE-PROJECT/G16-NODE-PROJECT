@@ -138,7 +138,6 @@ function cancel_create() {
 //create question 
 //@get value from font-end
 function create_question() {
-    hide(dom_questions_dialog);
     show(add_question_button);
     let new_question = {};
     new_question.question = document.getElementById('question').value;
@@ -147,15 +146,30 @@ function create_question() {
     new_question.answer_2 = document.getElementById('choiceB').value;
     new_question.answer_3 = document.getElementById('choiceC').value;
     new_question.answer_4 = document.getElementById('choiceD').value;
-    // if(new_question.length !==0){
-    axios.post("/api/add_question", new_question).then((res) => {
-        console.log(res);
-    });
 
+
+
+
+    // // validation_question
+    
+    if (new_question.question !== ""
+    && new_question.correct_answer !== "" 
+    && new_question.answer_1 !== ""
+    && new_question.answer_2 !== "" 
+    && new_question.answer_3 !== "" 
+    && new_question.answer_4 !== ""){
+        hide(dom_questions_dialog);
+        axios.post("/api/add_question", new_question).then((res) => {
+            console.log(res);
+        });
+    }else{
+        let dom_question_text=document.getElementById("question_text");
+        dom_question_text.textContent = "Please input again"
+    }
     console.log(new_question);
-
-
 }
+
+
 get_all_question();
 
 function click_tasks(e) {

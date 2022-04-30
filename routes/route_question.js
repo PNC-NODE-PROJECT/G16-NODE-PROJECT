@@ -9,7 +9,7 @@ router.get('/question',(req,res) =>{
     res.send(data);
 });
 // add question
-router.post('/add_question',(req,res)=>{
+router.post('/question',(req,res)=>{
     let question = req.body.question;
     let answer_a = req.body.answer_1;
     let answer_b = req.body.answer_2;

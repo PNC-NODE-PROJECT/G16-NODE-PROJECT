@@ -194,7 +194,7 @@ function create_question() {
         
         }else{
 
-            axios.post("/api/add_question", new_question).then((res) => {
+            axios.post("/api/question", new_question).then((res) => {
                 console.log("YES");
             });
         }

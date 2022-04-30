@@ -1,7 +1,10 @@
 const dom_questions_view = document.getElementById("questions-view");
 const dom_questions_dialog = document.getElementById("questions-dialog");
 const dom_add_question_button = document.getElementById("add_question_button");
+//button create_question
+const dom_create_question_button = document.getElementById("create_question_button");
 
+let questionId=0
 //display question and answer
 const dom_questions_container = document.getElementById("questions-container");
 function display_questions(datas) {
@@ -35,6 +38,8 @@ function display_questions(datas) {
         question.textContent = data.questions;
         question_info.appendChild(question);
 
+        let delete_edit_div= document.createElement("div");
+        delete_edit_div.className = "delete_edit";
 
 
         //delete question
@@ -42,12 +47,20 @@ function display_questions(datas) {
         a_delete.href = "#";
         a_delete.className = "delete";
         a_delete.textContent = "DELETE";
+        
+
+       
         //edit question
         let a_edit = document.createElement("a");
         a_edit.href = "#";
         a_edit.className = "edit";
         a_edit.textContent = "EDIT";
-
+        a_edit.id = data.id;
+        a_edit.addEventListener("click",()=>{
+            edit_question(a_edit.id);
+        });
+        delete_edit_div.appendChild(a_delete);
+        delete_edit_div.appendChild(a_edit);
 
 
         let answers_container = document.createElement("div");
@@ -93,13 +106,12 @@ function display_questions(datas) {
         answers_container.appendChild(answer_4);
 
 
-
         dom_questions_container.appendChild(card);
         card.appendChild(answers_container);
+        card.appendChild(delete_edit_div)
 
 
-        card.appendChild(a_delete);
-        card.appendChild(a_edit);
+        
         //correct answer
         let answers = document.getElementById(question_id)
         for (let element of answers.childNodes) {
@@ -130,9 +142,34 @@ function get_all_question() {
         console.log(res.data);
     });
 }
+//edit question 
+//@edit_question
+// let question_to_edit =null;
+function edit_question(id) {
+    questionId=id
+    axios.get("/api/question").then((res) => {
+        // question_to_edit =event.target.parentElement.id
+        let question_edit = res.data;
+        question_edit.forEach((element )=> {
+            if(element.id === id){
+                document.getElementById('question').value=element.questions
+                document.getElementById('correctAnswer').value=element.correct_answer
+                document.getElementById('choiceA').value=element.answer_a
+                document.getElementById('choiceB').value=element.answer_b
+                document.getElementById('choiceC').value=element.answer_c
+                document.getElementById('choiceD').value=element.answer_d
+                // document.querySelector('#choiceA')=answer_a;
+                dom_create_question_button.textContent= "EDIT";
+                show(dom_questions_dialog);
+            }
+        });
+        
+    });
+}
 //cancel create form if we don't want to create 
 function cancel_create() {
     hide(dom_questions_dialog);
+    dom_create_question_button.textContent="CREATE";
     show(add_question_button);
 }
 //create question 
@@ -148,27 +185,42 @@ function create_question() {
     new_question.answer_3 = document.getElementById('choiceC').value;
     new_question.answer_4 = document.getElementById('choiceD').value;
     // if(new_question.length !==0){
-    axios.post("/api/add_question", new_question).then((res) => {
-        console.log(res);
+    
+    document.body.addEventListener("click", (e)=>{
+        if(e.target.textContent=="EDIT"){
+            axios.patch("/api/question/"+questionId, new_question).then((res) => {
+                console.log("YES");
+            });
+        
+        }else{
+
+            axios.post("/api/add_question", new_question).then((res) => {
+                console.log("YES");
+            });
+        }
+            
+            
     });
-
-    console.log(new_question);
-
-
+        
+    get_all_question()
 }
 get_all_question();
 
-function click_tasks(e) {
-    e.preventDefault();
-    let id = e.target.parentElement.id;
-    if (e.target.className === "delete") {
-        let isExecuted = confirm("Are you sure to delete this question?");
-        if (isExecuted) {
-            axios.delete("/api/delete_question/" + id).then((res) => {
-                console.log(res);
-            })
+//delete tasks
+function click_tasks() {
+    document.body.addEventListener("click", (e)=>{
+        let id = e.target.parentElement.parentElement.id;
+        if (e.target.className=="delete") {
+            let isExecuted = confirm("Are you sure to delete this question?");
+            if (isExecuted) {
+                axios.delete("/api/question/" + id).then((res) => {
+                    console.log(res);
+                })
+            }
         }
-    }
-    console.log(id);
+            
+    });
+    get_all_question();
+    
 }
 dom_questions_container.addEventListener("click", click_tasks);

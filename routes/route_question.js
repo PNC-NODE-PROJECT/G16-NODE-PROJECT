@@ -22,7 +22,7 @@ router.post('/add_question',(req,res)=>{
 
 // delete question
 
-router.delete('/delete_question/:id', (req, res) => {
+router.delete('/question/:id', (req, res) => {
     let id = req.params.id
     let delete_question = data_models.remove_question(id)
     
@@ -47,6 +47,7 @@ router.patch('/question/:id',(req,res)=>{
     let edit_correct_answer = req.body.correct_answer;
     data = data_models.edit_question(edit_id,edit_question,edit_answer_a,edit_answer_b,edit_answer_c,edit_answer_d,edit_correct_answer);
     res.status(200).send({"MESSAGE":"SUCCESSFULL !"})
+    
 
 })
 

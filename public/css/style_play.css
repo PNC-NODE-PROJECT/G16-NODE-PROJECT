@@ -1,13 +1,20 @@
+
+
 #play-view {
     margin-top: 5em;
 }
-#quiz {
-    width:50%;
-    margin: auto;
-    padding: 20px;
-    background: rgb(255, 255, 255);
+.play_container{
+    background: rgba(255, 255, 255, 0.799);
     border-radius: 10px;
-    
+    padding: 50px;
+    box-shadow: 0px 0px 2px 2px;
+}
+#quiz {
+    width:60%;
+    margin: auto;
+    padding: 50px;
+    background: rgba(184, 182, 182, 0.669);
+    border-radius: 10px;
 }
 #quiz #choices{
     display: flex;
@@ -15,21 +22,35 @@
     align-items: center;
     
 }
+.question-style{
+    font-weight: bolder;
+    font-size:20px;
+}
 button{
     margin: 10px;
+   width:100%
+   border-radius 20px;
+   background: rgba(0, 42, 255, 0.5);
+   color:white;
+   border: none;
+   padding: 10px;
+   font-weight: bolder;
+   
+
 }
 .text-center{
     text-align: center;
 }
 #start{
     position: absolute;
-    top: 15em;
-    left:34em;
-    background:blue;
-    padding: 15px;
+    top: 10em;
+    left:28em;
+    background:rgba(10, 10, 141, 0.792);
+    padding: 20px;
     border-radius: 10px;
     color: white;
     font-weight: bold;
+    font-size: 20px
 }
 #score{
     position: absolute;
@@ -40,7 +61,14 @@ button{
     color: #fff;
     border-radius: 10px;
 }
-.delete,.edit{
-    display: flex;
-    justify-content: flex-end;
+.background_img{
+    background-image: url("../img/play_quiz_background.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.bg-nav{
+    background: rgb(5, 31, 179);
+    box-shadow: 0px 0px 6px 2px ;
 }

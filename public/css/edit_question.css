@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    background: rgb(224, 222, 222);
+    /* background: rgb(224, 222, 222); */
     font-family: 'Times New Roman', Times, serif;
 }
 /* -------------------------koev---------- */
@@ -27,11 +27,13 @@ input{
     margin-top: 10px;
 }
 #questions-view .add_question_button button{
-    background: rgb(98, 0, 255);
-    color: white;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px;
-    border-radius:10px
+    border-radius:10px;
+    font-weight: bold;
+    margin-left: 1em;
 }
 #questions-view {
     width: 60%;
@@ -139,8 +141,18 @@ dialog  ::placeholder{
 }
 .delete_edit .delete{
     color:rgb(132, 3, 3);
-   
 }
 .delete_edit .edit{
     background:rgb(0, 0, 255);
+}
+.bg-nav{
+    background: rgb(5, 31, 179);
+    box-shadow: 0px 0px 6px 2px ;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+#bg-body{
+    background: rgb(154, 3, 141);
 }

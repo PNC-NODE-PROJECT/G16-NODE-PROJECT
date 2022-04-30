@@ -135,6 +135,7 @@ function show(element) {
 function on_add_question() {
     show(dom_questions_dialog);
     hide(add_question_button);
+    get_all_question()
 }
 hide(dom_questions_dialog);
 //get question from back-end
@@ -162,6 +163,7 @@ function edit_question(id) {
                 document.getElementById('choiceD').value=element.answer_d
                 // document.querySelector('#choiceA')=answer_a;
                 dom_create_question_button.textContent= "EDIT";
+               
                 show(dom_questions_dialog);
             }
         });
@@ -171,8 +173,9 @@ function edit_question(id) {
 //cancel create form if we don't want to create 
 function cancel_create() {
     hide(dom_questions_dialog);
-    dom_create_question_button.textContent="CREATE";
     show(add_question_button);
+    dom_create_question_button.textContent="CREATE";
+    
 }
 //create question 
 //@get value from font-end
@@ -195,7 +198,6 @@ function create_question() {
             });
         
         }else{
-
             axios.post("/api/question", new_question).then((res) => {
                 console.log("YES");
             });
@@ -203,16 +205,14 @@ function create_question() {
             
             
     });
-        
     get_all_question()
 }
-get_all_question();
+
 
 //delete tasks
 function click_tasks() {
     document.body.addEventListener("click", (e)=>{
         let id = e.target.parentElement.parentElement.parentElement.id;
-        console.log(id);
         if (e.target.className=="fa-solid fa-trash-can") {
             let isExecuted = confirm("Are you sure to delete this question?");
             if (isExecuted) {
@@ -221,9 +221,9 @@ function click_tasks() {
                 })
             }
         }
-            
+        
     });
-    get_all_question();
     
 }
 dom_questions_container.addEventListener("click", click_tasks);
+get_all_question();

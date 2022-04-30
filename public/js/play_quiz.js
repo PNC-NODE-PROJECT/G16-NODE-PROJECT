@@ -29,21 +29,27 @@ let score = 0;
 function render_question(quiz_question, index) {
     // console.log(number);
     let question = quiz_question[index];
+
     dom_question.textContent = question.questions;
     dom_answerA.textContent = question.answer_a;
     dom_answerB.textContent = question.answer_b;
     dom_answerC.textContent = question.answer_c;
     dom_answerD.textContent = question.answer_d;
-
+    
 }
 //click to start play quiz
 dom_start.addEventListener("click", (event) => {
     event.preventDefault();
     hide(dom_start);
-    show(dom_quiz);
     //
     currect_question_index = 0;
     score = 0;
+
+    axios.get("/api/question").then((res) => {
+        render_question(res.data, currect_question_index);
+        show(dom_quiz);
+    });
+    
    
 })
 
@@ -51,15 +57,15 @@ dom_start.addEventListener("click", (event) => {
 //compute score
 
 function check_answer(choice) {
-
-
     axios.get("/api/question").then((res) => {
         render_question(res.data, currect_question_index);
-        console.log(currect_question_index)
+        
         let datas = res.data;
         let question_index = datas[currect_question_index];
-        if (choice == question_index.correct_answer) {
+      
+        if (choice === question_index.correct_answer) {
             score += 1;
+           
 
         }
         if (currect_question_index < datas.length - 1) {

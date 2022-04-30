@@ -50,8 +50,6 @@ router.patch('/question/:id',(req,res)=>{
     
 
 })
-
-
 //export 
 // console.log(dataModels.load_data());
 module.exports = router;

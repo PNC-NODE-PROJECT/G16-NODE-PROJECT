@@ -49,14 +49,15 @@ dom_start.addEventListener("click", (event) => {
 
 //check answer
 //compute score
+
 function check_answer(choice) {
 
 
     axios.get("/api/question").then((res) => {
         render_question(res.data, currect_question_index);
+        console.log(currect_question_index)
         let datas = res.data;
         let question_index = datas[currect_question_index];
-        console.log(question_index)
         if (choice == question_index.correct_answer) {
             score += 1;
 

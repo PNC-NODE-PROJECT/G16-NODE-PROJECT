@@ -41,16 +41,18 @@ function display_questions(datas) {
         let delete_edit_div= document.createElement("div");
         delete_edit_div.className = "delete_edit";
 
-
+        
+        let i_delete = document.createElement("i");
+        i_delete.className = "fa-solid fa-trash-can";
         //delete question
         let a_delete = document.createElement("a");
         a_delete.href = "#";
         a_delete.className = "delete";
-        a_delete.textContent = "DELETE";
-        
+        a_delete.appendChild(i_delete)
 
-       
         //edit question
+ 
+
         let a_edit = document.createElement("a");
         a_edit.href = "#";
         a_edit.className = "edit";
@@ -209,8 +211,9 @@ get_all_question();
 //delete tasks
 function click_tasks() {
     document.body.addEventListener("click", (e)=>{
-        let id = e.target.parentElement.parentElement.id;
-        if (e.target.className=="delete") {
+        let id = e.target.parentElement.parentElement.parentElement.id;
+        console.log(id);
+        if (e.target.className=="fa-solid fa-trash-can") {
             let isExecuted = confirm("Are you sure to delete this question?");
             if (isExecuted) {
                 axios.delete("/api/question/" + id).then((res) => {

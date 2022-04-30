@@ -17,7 +17,10 @@ input{
     border:none;
     outline: none;
 }
-
+.answer{
+    border-radius:10px;
+    color:white;
+}
 /*  */
 
 #questions-view .add_question_button{
@@ -35,7 +38,8 @@ input{
     margin: auto;
 }
 #questions-view #questions-container{
-    margin-top: 20vh;
+    margin-top: 10vh;
+
 }
 #questions-view #questions-container .card{
     margin: 20px;
@@ -60,6 +64,10 @@ input{
     background: #000;
     z-index:10;
     
+}
+section{
+    padding: 0;
+    margin: 0;
 }
 dialog{
     position: fixed;
@@ -130,9 +138,9 @@ dialog  ::placeholder{
     color: white;
 }
 .delete_edit .delete{
-    background:rgb(132, 3, 3);
+    color:rgb(132, 3, 3);
    
 }
 .delete_edit .edit{
-    background:rgb(9, 9, 138);
+    background:rgb(0, 0, 255);
 }

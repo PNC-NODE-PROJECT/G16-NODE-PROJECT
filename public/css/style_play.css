@@ -56,10 +56,9 @@ button{
     position: absolute;
     top: 15em;
     left:30em;
-    background: rgb(137, 134, 134);
+    background: rgb(263, 261, 261);
     padding: 10px;
-    color: #fff;
-    border-radius: 10px;
+    border-radius: 10px;   
 }
 .background_img{
     background-image: url("../img/play_quiz_background.jpg");

@@ -110,6 +110,11 @@ dialog label{
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
+
+span{
+    color:red;
+    padding-left: 60%;
+}
 dialog input{
     background: rgb(204, 202, 202);
     

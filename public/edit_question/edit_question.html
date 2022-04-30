@@ -37,20 +37,22 @@
         
                     <section >
                         <label for="">Question</label>
-                        <input type="text" class="form-control" id="question" placeholder="Enter Question">
+                        <input type="text" class="form-control" id="question" placeholder="Enter Question" required>
+                       
                         <label>Answer</label>
                         <div class="d-flex">
                             <div>
                                 <input  type="text" id="choiceA" placeholder="Answer A">
                                 <input type="text" id="choiceB" placeholder="Answer B">
-
+                                
                             </div>
                             <div>
                                 <input  type="text" id="choiceC" placeholder="Answer C">
                                 <input  type="text" id="choiceD" placeholder="Answer D">
-                               
+                                
                             </div>
                         </div>
+                        <span id="question_text"></span>
                         <label>Correct Answer</label>
                         <select name="" id = "correctAnswer">
                             <option value="A">Answer A</option>

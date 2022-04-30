@@ -69,6 +69,30 @@ function check_answer(choice) {
         }
     })
 };
+//good or bad
+//append score percent to DOM
+function show_score() {
+    hide(dom_quiz);
+    show(dom_score);
+    axios.get("/api/question").then((res) => {
+        let question_score = res.data;
+        const percent_score = Math.round((100 * score) / question_score.length);
+        let comment = "";
+        if (percent_score <= 20) {
+            comment = "HMMM !";
+        } else if (percent_score <= 40) {
+            comment = "YOU CAN IMPROVE";
+        } else if (percent_score <= 60) {
+            comment = "NOT BAD BUT...!";
+        } else if (percent_score <= 80) {
+            comment = "GOOD !";
 
+        } else {
+            comment = "WONDERFUL"
+        }
+        //display score to DOM
+        dom_score_p.textContent = comment + " : " + percent_score + " %";
+    })
+};
 
 

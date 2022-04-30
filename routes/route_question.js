@@ -9,7 +9,7 @@ router.get('/question',(req,res) =>{
     res.send(data);
 });
 // add question
-router.post('/add_question',(req,res)=>{
+router.post('/question',(req,res)=>{
     let question = req.body.question;
     let answer_a = req.body.answer_1;
     let answer_b = req.body.answer_2;
@@ -22,7 +22,7 @@ router.post('/add_question',(req,res)=>{
 
 // delete question
 
-router.delete('/delete_question/:id', (req, res) => {
+router.delete('/question/:id', (req, res) => {
     let id = req.params.id
     let delete_question = data_models.remove_question(id)
     
@@ -35,6 +35,20 @@ router.delete('/delete_question/:id', (req, res) => {
             "message": 'question id not found'
         })
     }
+})
+
+router.patch('/question/:id',(req,res)=>{
+    let edit_id = req.params.id;
+    let edit_question = req.body.question;
+    let edit_answer_a = req.body.answer_1;
+    let edit_answer_b = req.body.answer_2;
+    let edit_answer_c = req.body.answer_3;
+    let edit_answer_d = req.body.answer_3;
+    let edit_correct_answer = req.body.correct_answer;
+    data = data_models.edit_question(edit_id,edit_question,edit_answer_a,edit_answer_b,edit_answer_c,edit_answer_d,edit_correct_answer);
+    res.status(200).send({"MESSAGE":"SUCCESSFULL !"})
+    
+
 })
 
 

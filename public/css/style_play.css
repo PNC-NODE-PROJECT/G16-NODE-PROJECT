@@ -31,3 +31,16 @@ button{
     color: white;
     font-weight: bold;
 }
+#score{
+    position: absolute;
+    top: 15em;
+    left:30em;
+    background: rgb(137, 134, 134);
+    padding: 10px;
+    color: #fff;
+    border-radius: 10px;
+}
+.delete,.edit{
+    display: flex;
+    justify-content: flex-end;
+}

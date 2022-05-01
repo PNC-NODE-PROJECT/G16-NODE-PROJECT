@@ -151,8 +151,7 @@ dialog  ::placeholder{
     background:rgb(0, 0, 255);
 }
 .bg-nav{
-    background: rgb(5, 31, 179);
-    box-shadow: 0px 0px 6px 2px ;
+    /* box-shadow: 0px 0px 6px 2px ; */
     position: -webkit-sticky;
     position: sticky;
     top: 0;

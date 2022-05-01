@@ -1,29 +1,11 @@
 [
     {
-        "id": "84d1d34a-d2e4-4e6a-a539-5847ec869540",
-        "questions": "somnak",
-        "answer_a": "somnak",
-        "answer_b": "asdf",
-        "answer_c": "asdfa",
-        "answer_d": "asdfa",
-        "correct_answer": "A"
-    },
-    {
-        "id": "6c823a8b-cc8c-4413-8693-2bcc363e8f87",
-        "questions": "somnak kalan",
-        "answer_a": "dsfas",
-        "answer_b": "afdas",
-        "answer_c": "afdas",
-        "answer_d": "afdas",
-        "correct_answer": "A"
-    },
-    {
         "id": "f2cbd7ec-0fd4-4bd4-83bb-8c84c72556c7",
-        "questions": "sdf",
-        "answer_a": "sfd",
-        "answer_b": "sdf",
-        "answer_c": "sfd",
-        "answer_d": "sfd",
+        "questions": "what is your name?",
+        "answer_a": "sok",
+        "answer_b": "chan",
+        "answer_c": "da",
+        "answer_d": "da",
         "correct_answer": "A"
     }
 ]

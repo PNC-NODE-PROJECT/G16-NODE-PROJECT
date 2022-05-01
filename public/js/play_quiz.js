@@ -9,6 +9,10 @@ const dom_answerD = document.getElementById("D");
 //score 
 const dom_score = document.getElementById("score");
 const dom_score_p = document.getElementById("score_p");
+const dom_progress = document.getElementById("progressbar");
+const dom_count = document.getElementById("count");
+const dom_alert_time = document.getElementById("alert_time");
+const dom_img = document.getElementById("img");
 
 
 //HIDE SHOW
@@ -25,57 +29,90 @@ function show(element) {
 //play quiz
 ;
 //display questions
-let score = 0;
-function render_question(quiz_question, index) {
-    // console.log(number);
-    let question = quiz_question[index];
 
-    dom_question.textContent = question.questions;
+
+let score = 0;
+let currentQuestion = 0;
+// console.log(score);
+function render_question(quiz_question) {
+
+    let question = quiz_question[currentQuestion];
+    dom_question.textContent =question.questions;
     dom_answerA.textContent = question.answer_a;
     dom_answerB.textContent = question.answer_b;
     dom_answerC.textContent = question.answer_c;
     dom_answerD.textContent = question.answer_d;
-    
 }
-//click to start play quiz
+
+axios.get("/api/question").then((res) => {
+    let listQuestion = res.data;
+    if (currentQuestion < listQuestion.length) {
+        render_question(listQuestion);
+        currentQuestion += 1;
+    }
+});
+//check answer
+//compute score
+function check_answer(choice) {
+    axios.get("/api/question").then((res) => {
+        let listQuestion = res.data;
+        // let isTrue = false;
+
+        listQuestion.forEach((question) => {
+            if (choice == question.correct_answer) {
+                score +=   1
+            }
+        })
+        if (currentQuestion < listQuestion.length) {
+            render_question(listQuestion);
+            currentQuestion += 1;
+        } else {
+            show_score()
+
+        }
+
+    });
+    countdown = 0;
+    width=0;
+
+};
+
+
+var countdown = 0;
+var width = 0;
+var i = setInterval(() => {
+    countdown = countdown + 1;
+    width=width+6.6;
+    dom_count.textContent = countdown;
+    dom_progress.style.width = width + "%";
+    console.log(width);
+    if(countdown===10){
+        dom_alert_time.style.color="red";
+        dom_alert_time.textContent="LEFT 5 MINUTES: ";
+    }
+    if (countdown === 15) {
+        countdown = 0;
+        width=0;
+        check_answer();
+        dom_progress.style.width = "%"
+    }
+}, 1000);
+
+
+
 dom_start.addEventListener("click", (event) => {
     event.preventDefault();
     hide(dom_start);
-    //
-    currect_question_index = 0;
+    show(dom_quiz);
+    hide(dom_img);
     score = 0;
+    width=0;
+    countdown = 0;
 
-    axios.get("/api/question").then((res) => {
-        render_question(res.data, currect_question_index);
-        show(dom_quiz);
-    });
-    
-   
+
 })
 
-//check answer
-//compute score
 
-function check_answer(choice) {
-    axios.get("/api/question").then((res) => {
-        render_question(res.data, currect_question_index);
-        
-        let datas = res.data;
-        let question_index = datas[currect_question_index];
-      
-        if (choice === question_index.correct_answer) {
-            score += 1;
-           
-
-        }
-        if (currect_question_index < datas.length - 1) {
-            currect_question_index += 1
-        } else {
-            //display score
-            show_score()
-        }
-    })
-};
 //good or bad
 //append score percent to DOM
 function show_score() {
@@ -101,5 +138,3 @@ function show_score() {
         dom_score_p.textContent = comment + " : " + percent_score + " %";
     })
 };
-
-

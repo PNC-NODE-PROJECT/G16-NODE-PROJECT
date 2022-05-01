@@ -4,60 +4,51 @@
     margin-top: 5em;
 }
 .play_container{
-    background: rgba(255, 255, 255, 0.799);
+    background: rgb(255, 255, 255);
     border-radius: 10px;
-    padding: 50px;
-    box-shadow: 0px 0px 2px 2px;
+    padding: 20px;
+    box-shadow: 0px 0px 6px 2px blue;
 }
 #quiz {
-    width:60%;
+    width:40%;
     margin: auto;
-    padding: 50px;
+    padding: 30px;
     background: rgba(184, 182, 182, 0.669);
     border-radius: 10px;
-}
-#quiz #choices{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
 }
 .question-style{
     font-weight: bolder;
     font-size:20px;
+    background: rgb(10, 174, 76);
+    box-shadow: 0px 0px 3px 1px;
+    color: white;
+    padding: 0;
+    margin: 0;
 }
-button{
-    margin: 10px;
-   width:100%
-   border-radius 20px;
-   background: rgba(0, 42, 255, 0.5);
-   color:white;
-   border: none;
-   padding: 10px;
-   font-weight: bolder;
-   
 
-}
-.text-center{
-    text-align: center;
-}
 #start{
     position: absolute;
-    top: 10em;
-    left:28em;
+    top: 15em;
+    left:29em;
     background:rgba(10, 10, 141, 0.792);
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     color: white;
     font-weight: bold;
     font-size: 20px
 }
+.img-play{
+    margin-top: 2em;
+    margin-left: 32em;
+    width: 20%;
+}
+
 #score{
     position: absolute;
-    top: 15em;
-    left:30em;
-    background: rgb(263, 261, 261);
-    padding: 10px;
+    top: 140px;
+    left:29em;
+    background: white;
+    padding: 180px 90px 90px 80px;
     border-radius: 10px;   
 }
 .background_img{
@@ -70,4 +61,49 @@ button{
 .bg-nav{
     background: rgb(5, 31, 179);
     box-shadow: 0px 0px 6px 2px ;
+}
+#progressbar{
+    background:rgb(0, 8, 255);
+    padding: 5px;
+    border-radius: 10px;
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+}
+
+#count_style{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;margin: 0;
+}
+.quiz_score{
+    position: relative;
+    bottom: 12em;
+    left:2em;
+    right: 1em;
+    
+}
+#score_p{
+    position: relative;
+    left: 2em;
+    right: 1em;
+}
+.logo{
+    position: relative;
+    left: 4em;
+    right: 2em;
+    bottom: 12em;
+    color: rgb(21, 255, 0);
+}
+#scores{
+    position: relative;
+    margin-left: 1em;
+    border-radius: 10px;
+    bottom: 150px;
+    background:blue;
+    color: white;
+    font-weight: bold;
+    padding-left: 3em;
+    padding-right: 3em;
+    
 }

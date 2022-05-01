@@ -31,33 +31,40 @@
             <li><a class="active nav-link m-2 text-white" href="../edit_question/edit_question.html">EDIT QUIZ</a></li>
         </ul>
     </nav>
-    <div id="start">PLAY QUIZ</div>
+    <div>
+        <img id="img" class="img-play" src="../img/quiz-time.jpg" alt="">
+       
+        <div id="start">PLAY QUIZ</div>
+    </div>
 
     <div id="play-view">
 
-        <div id="quiz" style="display:none">
+        <div id="quiz" style="display:none;">
             <div class="play_container">
 
-                <div id="choices">
-                    <div class="text-center">
-                        <div id="question" class="question-style">My Question</div>
-
+                <div  id="choices">
+                        <div id="count_style" class="fs-5 fw-bold"><strong id="alert_time" >TIME LEFT: </strong><p id="count"></p></div>
+                        <div id="question" class="form-control  question-style p-2 m-2">My Question</div>
+                        <div id="progressbar"></div>
                         <div >
                             <div >
-                                <button id="A" onclick="check_answer('A')">MY CHOICE A</button>
-                                <button id="B" onclick="check_answer('B')">MY CHOICE A</button>
+                                <button class="form-control  p-2 m-2" id="A" onclick="check_answer('A')">MY CHOICE A</button>
+                                <button  class="form-control p-2 m-2" id="B" onclick="check_answer('B')">MY CHOICE A</button>
                             </div>
                             <div>
-                                <button id="C" onclick="check_answer('C')">MY CHOICE A</button>
-                                <button id="D" onclick="check_answer('D')">MY CHOICE A</button>
+                                <button class="form-control p-2 m-2" id="C" onclick="check_answer('C')">MY CHOICE A</button>
+                                <button class="form-control p-2 m-2" id="D" onclick="check_answer('D')">MY CHOICE A</button>
                             </div>
 
                         </div>
-                    </div>
+                        
                 </div>
             </div>
         </div>
         <div id="score" style="display: none;">
+            <p class="logo"><i class="fa-solid fa-circle-check fs-2"></i></p>
+            <div class="quiz_score">QUIZ SCORES</div>
+            <p id="scores">100</p>
             <p id="score_p"></p>
         </div>
 

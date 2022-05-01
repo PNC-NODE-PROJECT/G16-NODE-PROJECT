@@ -13,6 +13,7 @@ const dom_progress = document.getElementById("progressbar");
 const dom_count = document.getElementById("count");
 const dom_alert_time = document.getElementById("alert_time");
 const dom_img = document.getElementById("img");
+const dom_button_next = document.getElementById("button_next");
 
 
 //HIDE SHOW
@@ -56,8 +57,6 @@ axios.get("/api/question").then((res) => {
 function check_answer(choice) {
     axios.get("/api/question").then((res) => {
         let listQuestion = res.data;
-        // let isTrue = false;
-
         listQuestion.forEach((question) => {
             if (choice == question.correct_answer) {
                 score +=   1
@@ -68,16 +67,16 @@ function check_answer(choice) {
             currentQuestion += 1;
         } else {
             show_score()
-
         }
 
     });
     countdown = 0;
     width=0;
-
 };
 
-
+//
+//progress bar and second of time for one question
+//
 var countdown = 0;
 var width = 0;
 var i = setInterval(() => {
@@ -85,11 +84,13 @@ var i = setInterval(() => {
     width=width+6.6;
     dom_count.textContent = countdown;
     dom_progress.style.width = width + "%";
-    console.log(width);
-    if(countdown===10){
+    dom_alert_time.textContent="Times : ";
+    dom_alert_time.style.color = "Black";
+    if(countdown>=10 && countdown <=15){
         dom_alert_time.style.color="red";
-        dom_alert_time.textContent="LEFT 5 MINUTES: ";
+        dom_alert_time.textContent="Left 5 second: ";
     }
+
     if (countdown === 15) {
         countdown = 0;
         width=0;
@@ -98,8 +99,10 @@ var i = setInterval(() => {
     }
 }, 1000);
 
-
-
+//
+// Click start play quiz 
+//show dom_quiz and hide img 
+//click start all score will count back from 1
 dom_start.addEventListener("click", (event) => {
     event.preventDefault();
     hide(dom_start);
@@ -108,13 +111,12 @@ dom_start.addEventListener("click", (event) => {
     score = 0;
     width=0;
     countdown = 0;
-
-
 })
 
-
+//
 //good or bad
 //append score percent to DOM
+//
 function show_score() {
     hide(dom_quiz);
     show(dom_score);

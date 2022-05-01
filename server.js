@@ -13,11 +13,11 @@ app.use(express.json());
 // Define static route
 app.use(express.static("public"));
 // router
-const dataRouter = require('./routes/route_question.js');
+const questionRouter = require('./routes/route_question.js');
 
 
 app.listen(PORT,()=>{
     console.log('listening on port'+PORT);
 
 });
-app.use('/api',dataRouter);
+app.use('/api',questionRouter);

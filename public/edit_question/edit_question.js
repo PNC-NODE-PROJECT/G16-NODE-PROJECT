@@ -1,19 +1,38 @@
 const dom_questions_view = document.getElementById("questions-view");
 const dom_questions_dialog = document.getElementById("questions-dialog");
 const dom_add_question_button = document.getElementById("add_question_button");
-//button create_question
 const dom_create_question_button = document.getElementById("create_question_button");
+const dom_questions_container = document.getElementById("questions-container");
 
 let questionId = 0
-//display question and answer
-const dom_questions_container = document.getElementById("questions-container");
+
+
+//HIDE SHOW
+function hide(element) {
+    element.style.display = 'none';
+}
+function show(element) {
+    element.style.display = 'block';
+}
+
+
+//
+// Get questions from back-end and update the DOM
+//
+function refreshQuestions() {
+    axios.get("/api/question").then((res) => {
+        display_questions(res.data);
+    });
+}
+
+//
+// Update DOM regarding the list of questions
+//
 function display_questions(datas) {
     while (dom_questions_container.firstChild) {
         dom_questions_container.removeChild(dom_questions_container.lastChild);
     }
-    let dom_container_div_question = document.createElement("div");
-    dom_container_div_question.id = "questions-container";
-    dom_questions_view.appendChild(dom_container_div_question);
+
     let question_id = 0;
     for (let index = 0; index < datas.length; index++) {
         question_id += 1;
@@ -38,30 +57,32 @@ function display_questions(datas) {
         question.textContent = data.questions;
         question_info.appendChild(question);
 
+        //delete button
         let delete_edit_div = document.createElement("div");
         delete_edit_div.className = "delete_edit";
-
-
         let i_delete = document.createElement("i");
         i_delete.className = "fa-solid fa-trash-can";
-        //delete question
         let a_delete = document.createElement("a");
         a_delete.href = "#";
         a_delete.className = "delete";
         a_delete.appendChild(i_delete)
+        a_delete.addEventListener("click", () => {
+            on_delete_question(data.id);
+        });
+        delete_edit_div.appendChild(a_delete);
 
-        //edit question
 
 
+        //edit button
         let a_edit = document.createElement("a");
         a_edit.href = "#";
         a_edit.className = "edit";
         a_edit.textContent = "EDIT";
         a_edit.id = data.id;
         a_edit.addEventListener("click", () => {
-            edit_question(a_edit.id);
+            on_edit_question(a_edit.id);
         });
-        delete_edit_div.appendChild(a_delete);
+
         delete_edit_div.appendChild(a_edit);
 
 
@@ -121,37 +142,34 @@ function display_questions(datas) {
                 element.style.background = "green";
             }
         }
-
     }
-    console.log(dom_questions_container)
 };
-//HIDE SHOW
-function hide(element) {
-    element.style.display = 'none';
-}
-function show(element) {
-    element.style.display = 'block';
-}
+
+
+
+// EVENT FUNCTIONS ------------------------------------------
+
 function on_add_question() {
-    show(dom_questions_dialog);
     hide(add_question_button);
-    get_all_question()
+
+    dom_create_question_button.textContent = "CREATE";
+    show(dom_questions_dialog);
 }
-hide(dom_questions_dialog);
-//get question from back-end
-function get_all_question() {
-    axios.get("/api/question").then((res) => {
-        display_questions(res.data);
-        console.log(res.data);
-    });
+
+function isEditing() {
+    return dom_create_question_button.textContent === "EDIT";
 }
-//edit question 
-//@edit_question
-// let question_to_edit =null;
-function edit_question(id) {
+
+//cancel create form if we don't want to create 
+function on_cancel_create() {
+    hide(dom_questions_dialog);
+    show(add_question_button);
+}
+
+function on_edit_question(id) {
     questionId = id
     axios.get("/api/question").then((res) => {
-        // question_to_edit =event.target.parentElement.id
+
         let question_edit = res.data;
         question_edit.forEach((element) => {
             if (element.id === id) {
@@ -161,83 +179,87 @@ function edit_question(id) {
                 document.getElementById('choiceB').value = element.answer_b
                 document.getElementById('choiceC').value = element.answer_c
                 document.getElementById('choiceD').value = element.answer_d
-                // document.querySelector('#choiceA')=answer_a;
+
                 dom_create_question_button.textContent = "EDIT";
 
                 show(dom_questions_dialog);
             }
         });
-
     });
 }
-//cancel create form if we don't want to create 
-function cancel_create() {
-    hide(dom_questions_dialog);
-    show(add_question_button);
-    dom_create_question_button.textContent = "CREATE";
 
+
+
+function isValidINputs() {
+    let question = document.getElementById('question').value;
+    let correct_answer = document.getElementById('correctAnswer').value;
+    let choiceA = document.getElementById('choiceA').value;
+    let choiceB = document.getElementById('choiceB').value;
+    let choiceC = document.getElementById('choiceC').value;
+    let choiceD = document.getElementById('choiceD').value;
+
+    return question !== ""
+        && correct_answer !== ""
+        && choiceA !== ""
+        && choiceB !== ""
+        && choiceC !== ""
+        && choiceD !== "";
 }
-//create question 
-//@get value from font-end
-function create_question() {
-    show(add_question_button);
-    let new_question = {};
-    new_question.question = document.getElementById('question').value;
-    new_question.correct_answer = document.getElementById('correctAnswer').value;
-    new_question.answer_1 = document.getElementById('choiceA').value;
-    new_question.answer_2 = document.getElementById('choiceB').value;
-    new_question.answer_3 = document.getElementById('choiceC').value;
-    new_question.answer_4 = document.getElementById('choiceD').value;
-    // if(new_question.length !==0){
 
-    document.body.addEventListener("click", (e) => {
-        if (e.target.textContent == "EDIT") {
-            axios.patch("/api/question/" + questionId, new_question).then((res) => {
-                console.log("YES");
-            });
+function on_create_question() {
+
+    // 1 = Valiation 
+    if (isValidINputs()) {
+        show(add_question_button);
+        hide(dom_questions_dialog);
+
+
+        let new_question = {};
+        new_question.question = document.getElementById('question').value;
+        new_question.correct_answer = document.getElementById('correctAnswer').value;
+        new_question.answer_1 = document.getElementById('choiceA').value;
+        new_question.answer_2 = document.getElementById('choiceB').value;
+        new_question.answer_3 = document.getElementById('choiceC').value;
+        new_question.answer_4 = document.getElementById('choiceD').value;
+
+        if (isEditing()) {
+            axios.patch("/api/question/" + questionId, new_question)
+            .then((res)=> { refreshQuestions(); })
+            .error((err) => {    });
 
         } else {
-            // // validation_question
-
-            if (new_question.question !== ""
-                && new_question.correct_answer !== ""
-                && new_question.answer_1 !== ""
-                && new_question.answer_2 !== ""
-                && new_question.answer_3 !== ""
-                && new_question.answer_4 !== "") {
-                hide(dom_questions_dialog);
-                axios.post("/api/question", new_question).then((res) => {
-                    console.log(res);
-                });
-            } else {
-                let dom_question_text = document.getElementById("question_text");
-                dom_question_text.textContent = "Please input again"
-            }
-            
+            axios.post("/api/question", new_question)
+            .then((res) => { refreshQuestions(); })
+            .error((err) => {  })
         }
-
-
-    });
+    }
+    else {
+        let dom_question_text = document.getElementById("question_text");
+        dom_question_text.textContent = "Please input again"
+    }
 }
 
 
-get_all_question();
 
-//delete tasks
-function click_tasks() {
-    document.body.addEventListener("click", (e) => {
-        let id = e.target.parentElement.parentElement.parentElement.id;
-        if (e.target.className == "fa-solid fa-trash-can") {
-            let isExecuted = confirm("Are you sure to delete this question?");
-            if (isExecuted) {
-                axios.delete("/api/question/" + id).then((res) => {
-                    console.log(res);
-                })
-            }
-        }
-
-    });
-
+// delete question
+function on_delete_question(id) {
+    let isExecuted = confirm("Are you sure to delete this question?");
+    if (isExecuted) {
+        axios.delete("/api/question/" + id)
+            .then((res) => { refreshQuestions(); })
+            .error((err) => {  })
+    }
 }
-dom_questions_container.addEventListener("click", click_tasks);
-get_all_question();
+
+
+
+
+
+
+
+
+// MAIN   ------------------------------------------
+
+
+hide(dom_questions_dialog);
+refreshQuestions();

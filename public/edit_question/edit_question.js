@@ -137,6 +137,7 @@ function display_questions(datas) {
 
         //correct answer
         let answers = document.getElementById(question_id)
+        console.log(answers)
         for (let element of answers.childNodes) {
             if (element.id == data.correct_answer) {
                 element.style.background = "green";

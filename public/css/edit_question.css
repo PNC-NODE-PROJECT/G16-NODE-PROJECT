@@ -1,77 +1,100 @@
-body{
+body {
     margin: 0;
     padding: 0;
     /* background: rgb(224, 222, 222); */
     font-family: 'Times New Roman', Times, serif;
 }
+
 /* ----------------------------------- */
 /* nav{
     position:static;
     top: 0;
 } */
 /*  */
-input{
+input {
     margin-top: 10px;
     padding: 5px;
-    border-radius:5px;
-    border:none;
+    border-radius: 5px;
+    border: none;
     outline: none;
 }
-.answer{
-    border-radius:10px;
-    color:white;
+
+.answer {
+    border-radius: 10px;
+    color: white;
 }
+
 /*  */
 
-#questions-view .add_question_button{
+#questions-view .add_question_button {
     margin-top: 10px;
 }
-#questions-view .add_question_button button{
+
+#questions-view .add_question_button button,nav .nav li a {
+    position: fixed;
     background: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border: none;
     padding: 10px;
-    border-radius:10px;
+    border-radius: 10px;
     font-weight: bold;
-    margin-left: 1em;
+    left: 5em;
+}
+nav .nav li {
+    position: relative;
+    top: 8em;
+}
+nav .nav li a{
+    width: 9%;
+    text-align: center;
 }
 #questions-view {
     width: 60%;
     margin: auto;
 }
-#questions-view #questions-container{
+
+#questions-view #questions-container {
     margin-top: 10vh;
 
 }
-#questions-view #questions-container .card{
+
+#questions-view #questions-container .card {
     margin: 20px;
 }
-#questions-view #questions-container .card .card-header,.answer-container{
+
+#questions-view #questions-container .card .card-header,
+.answer-container {
     margin: 10px;
 }
-#questions-view #questions-container .card .card-header,.answer-container .answer{
+
+#questions-view #questions-container .card .card-header,
+.answer-container .answer {
     padding: 5px;
     margin-top: 10px;
 }
-.answer-container{
+
+.answer-container {
     display: grid;
-    grid-template-columns: repeat(2,auto);
+    grid-template-columns: repeat(2, auto);
     gap: 10px;
-  }
-#questions-dialog{
+}
+
+#questions-dialog {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     background: #000;
-    z-index:10;
-    
+    z-index: 10;
+
 }
-section{
+
+section {
     padding: 0;
     margin: 0;
 }
-dialog{
+
+dialog {
     position: fixed;
     top: 10vh;
     left: 20%;
@@ -79,64 +102,74 @@ dialog{
     z-index: 100;
     border-radius: 12px;
     border: none;
-    box-shadow: 0 2px 8px black ;
+    box-shadow: 0 2px 8px black;
     padding: 0;
     margin: 0;
     overflow: hidden;
-   
+
 }
-dialog header{
+
+dialog header {
     background: rgb(106, 104, 104);
     color: #fff;
     font-size: 1.12rem;
     width: 100%;
     padding: 1rem;
 }
+
 dialog section {
     padding: 1rem;
     margin-left: 1em;
 }
-dialog menu{
+
+dialog menu {
     padding: 1rem;
     display: flex;
     justify-content: flex-end;
     margin: 0;
 }
-dialog label{
+
+dialog label {
     font-weight: bold;
-    display:block;
+    display: block;
     margin-top: 1px solid #ccc;
     font-size: 1.1rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-span{
-    color:red;
+span {
+    color: red;
     padding-left: 60%;
 }
-dialog input{
+
+dialog input {
     background: rgb(204, 202, 202);
-    
+
 }
-dialog  ::placeholder{
+
+dialog ::placeholder {
     color: rgb(240, 237, 237);
 }
-#cancel_create_question,#create_question_button{
+
+#cancel_create_question,
+#create_question_button {
     background: rgb(57, 57, 57);
     padding: 5px;
     color: white;
     margin: 5px;
-    border:none;
-    border-radius:10px;
+    border: none;
+    border-radius: 10px;
 }
-.delete_edit{
+
+.delete_edit {
     display: flex;
     justify-content: flex-end;
     margin-right: 0.5em;
 
 }
-.delete_edit a{
+
+.delete_edit a {
     margin: 10px;
     text-decoration: none;
     padding-right: 5px;
@@ -144,19 +177,23 @@ dialog  ::placeholder{
     border-radius: 5px;
     color: white;
 }
-.delete_edit .delete{
-    color:rgb(132, 3, 3);
+
+.delete_edit .delete {
+    color: rgb(132, 3, 3);
 }
-.delete_edit .edit{
-    background:rgb(0, 0, 255);
+
+.delete_edit .edit {
+    background: rgb(0, 0, 255);
 }
-.bg-nav{
+
+.bg-nav {
     /* box-shadow: 0px 0px 6px 2px ; */
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 10;
 }
-#bg-body{
+
+#bg-body {
     background: rgb(154, 3, 141);
 }

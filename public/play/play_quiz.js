@@ -14,6 +14,10 @@ const dom_count = document.getElementById("count");
 const dom_alert_time = document.getElementById("alert_time");
 const dom_img = document.getElementById("img");
 const dom_button_next = document.getElementById("button_next");
+const dom_emoji = document.getElementById("emoji");
+const dom_hide = document.getElementById("hide");
+const dom_title_header = document.getElementById("title_header");
+
 
 
 //HIDE SHOW
@@ -28,7 +32,6 @@ function show(element) {
 //get question from server
 //display question
 //play quiz
-;
 //display questions
 
 
@@ -43,6 +46,7 @@ function render_question(quiz_question) {
     dom_answerB.textContent = question.answer_b;
     dom_answerC.textContent = question.answer_c;
     dom_answerD.textContent = question.answer_d;
+    
 }
 
 axios.get("/api/question").then((res) => {
@@ -94,10 +98,9 @@ var i = setInterval(() => {
     if (countdown === 15) {
         countdown = 0;
         width=0;
-        check_answer();
         dom_progress.style.width = "%"
     }
-}, 1000);
+},1000);
 
 //
 // Click start play quiz 
@@ -105,9 +108,12 @@ var i = setInterval(() => {
 //click start all score will count back from 1
 dom_start.addEventListener("click", (event) => {
     event.preventDefault();
+    hide(dom_hide);
     hide(dom_start);
     show(dom_quiz);
     hide(dom_img);
+    hide(dom_title_header);
+    
     score = 0;
     width=0;
     countdown = 0;
@@ -117,26 +123,35 @@ dom_start.addEventListener("click", (event) => {
 //good or bad
 //append score percent to DOM
 //
+
 function show_score() {
+    show(dom_title_header);
     hide(dom_quiz);
     show(dom_score);
     axios.get("/api/question").then((res) => {
         let question_score = res.data;
         const percent_score = Math.round((100 * score) / question_score.length);
         let comment = "";
+        let img = "../img/";
         if (percent_score <= 20) {
+            img += "bad.png";
             comment = "HMMM !";
         } else if (percent_score <= 40) {
+            img += "improve.png";
             comment = "YOU CAN IMPROVE";
         } else if (percent_score <= 60) {
+            img += "ok.png";
             comment = "NOT BAD BUT...!";
         } else if (percent_score <= 80) {
+            img += "good.png"
             comment = "GOOD !";
 
         } else {
-            comment = "WONDERFUL"
+            img += "best.png";
+            comment = "WONDERFUL";
         }
         //display score to DOM
         dom_score_p.textContent = comment + " : " + percent_score + " %";
+        dom_emoji.src = img;
     })
 };

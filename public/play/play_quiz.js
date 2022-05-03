@@ -12,7 +12,6 @@ const dom_score_p = document.getElementById("score_p");
 const dom_progress = document.getElementById("progressbar");
 const dom_count = document.getElementById("count");
 const dom_alert_time = document.getElementById("alert_time");
-const dom_img = document.getElementById("img");
 const dom_button_next = document.getElementById("button_next");
 const dom_emoji = document.getElementById("emoji");
 const dom_hide = document.getElementById("hide");
@@ -71,6 +70,7 @@ function check_answer(choice) {
             currentQuestion += 1;
         } else {
             show_score()
+            clearInterval(i)
         }
 
     });
@@ -79,41 +79,39 @@ function check_answer(choice) {
 };
 
 //
-//progress bar and second of time for one question
-//
-var countdown = 0;
-var width = 0;
-var i = setInterval(() => {
-    countdown = countdown + 1;
-    width=width+6.6;
-    dom_count.textContent = countdown;
-    dom_progress.style.width = width + "%";
-    dom_alert_time.textContent="Times : ";
-    dom_alert_time.style.color = "Black";
-    if(countdown>=10 && countdown <=15){
-        dom_alert_time.style.color="red";
-        dom_alert_time.textContent="Left 5 second: ";
-    }
-
-    if (countdown === 15) {
-        countdown = 0;
-        width=0;
-        dom_progress.style.width = "%"
-    }
-},1000);
-
-//
 // Click start play quiz 
 //show dom_quiz and hide img 
 //click start all score will count back from 1
+//
+let countdown = 0;
+let width = 0;
 dom_start.addEventListener("click", (event) => {
     event.preventDefault();
+    i = setInterval(() => {
+            countdown = countdown + 1;
+            width=width+6.6;
+            dom_count.textContent = countdown;
+            dom_progress.style.width = width + "%";
+            dom_alert_time.textContent="Times :"+0;
+            
+            dom_alert_time.style.color = "Black";
+            if(countdown>=10 && countdown <=15){
+                dom_alert_time.style.color="red";
+                dom_alert_time.textContent="Left 5 second: ";
+            }
+        
+            if (countdown === 15) {
+                countdown = 0;
+                width=0;
+                check_answer();
+                dom_progress.style.width = "%";
+            }
+            console.log(countdown);
+        },1000);
     hide(dom_hide);
     hide(dom_start);
     show(dom_quiz);
-    hide(dom_img);
     hide(dom_title_header);
-    
     score = 0;
     width=0;
     countdown = 0;

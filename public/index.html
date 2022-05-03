@@ -75,8 +75,12 @@
             <div class="play_container">
 
                 <div id="choices">
-                    <div id="count_style" class="fs-5 fw-bold"><strong id="alert_time"> </strong>
-                        <p id="count"></p>
+                    <div id="count_style" class="fs-5 fw-bold">
+                        <div id="limit_time">
+                            <strong id="alert_time"> </strong>
+                            <p  id="count"></p>
+
+                        </div>
                     </div>
                     <div id="question" class="form-control  question-style p-2 m-2">My Question</div>
                     <div id="progressbar"></div>
@@ -102,14 +106,18 @@
             </div>
         </div>
         <div id="score" style="display: none;">
-            <p class="logo"><i class="fa-solid fa-circle-check fs-2"></i></p>
-            <div class="quiz_score">QUIZ SCORES</div>
-            <p id="scores"></p>
-            <div id="emoji"></div>
-            <p id="score_p"></p>
+            <div id="score_element">
+                <p class="logo"><i class="fa-solid fa-circle-check fs-2"></i></p>
+                <div class="quiz_score">YOUR SCORES</div>
+                <p id="scores"></p>
+                <div id="emoji"></div>
+                <p id="score_p"></p>
+
+            </div>
         </div>
 
     </div>
+
 </body>
 <script src="../play/play_quiz.js"></script>
 </html>

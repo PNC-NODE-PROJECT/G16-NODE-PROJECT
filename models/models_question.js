@@ -32,7 +32,7 @@ let add_questions = (questions, answer_a, answer_b, answer_c, answer_d, correct_
     if (number_question > 0) {
         number_question = get_load_question[get_load_question.length - 1].number_question + 1;
     } else {
-        number_question = 1
+        number_question += 1
     }
     if (!is_the_same_question) {
         let new_data = { "number_question": number_question, "id": uuidv4(), "questions": questions, "answer_a": answer_a, "answer_b": answer_b, "answer_c": answer_c, "answer_d": answer_d, "correct_answer": correct_answer };

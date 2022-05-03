@@ -28,7 +28,15 @@ body{
     padding: 0;
     margin: 0;
 }
-
+.quiz_score{
+    position:absolute;
+    top: 10em;
+    bottom: 12em;
+    left:36em;
+    right: 1em;
+    font-weight: bold;
+   
+}
 
 .img-play{
     margin-top: 2em;
@@ -37,12 +45,21 @@ body{
 }
 
 #score{
-    position: absolute;
-    top: 120px;
-    left:29em;
-    background: white;
-    padding: 180px 90px 90px 80px;
-    border-radius: 10px;   
+    
+ 
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+   
+}
+#score_element {
+    margin-top: 4em;
+    margin-right: 2em;
+    background:white;
+    padding-left: 2em;
+    padding-bottom: 20em;
+    border-radius: 10px;
 }
 
 .bg-nav{
@@ -60,35 +77,37 @@ body{
 
 #count_style{
     display: flex;
-    justify-content: flex-end;
-    padding: 0;margin: 0;
+    justify-content:flex-end;
+    padding: 0;margin-right: 0;
 }
-.quiz_score{
-    position: relative;
-    bottom: 12em;
-    left:2em;
-    right: 1em;
-    
+#count_style  #limit_time{
+    display: flex;
+    background: rgba(186, 187, 191, 0.891);
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    border-radius:10px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 #score_p{
     position: relative;
-    left: 2em;
+    left: 1em;
     right: 1em;
+    font-size: 20px;
+    font-weight: bold;
 }
-.logo{
-    position: relative;
-    left: 4em;
+#score_element .logo{
+    position: absolute;
+    left: 35em;
     right: 2em;
-    bottom: 12em;
+    top:8em;
     color: rgb(21, 255, 0);
 }
-#scores{
-    position: relative;
-    margin-left: 1em;
+#score_element p{
+    position: absolute;
+    left: 25em;
     border-radius: 10px;
     bottom: 150px;
-    background:blue;
-    color: white;
     font-weight: bold;
     padding-left: 3em;
     padding-right: 3em;
@@ -134,4 +153,9 @@ body{
     font-weight: bold;
     color:white;
 
+}
+.card .bg-danger li a:hover{
+    background: rgb(71, 172, 239);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219);
+    border-radius: 5px;
 }

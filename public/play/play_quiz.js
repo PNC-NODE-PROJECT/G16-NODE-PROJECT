@@ -130,26 +130,26 @@ function show_score() {
         let question_score = res.data;
         const percent_score = Math.round((100 * score) / question_score.length);
         let comment = "";
-        let img = "../img/";
+        let image = document.createElement("img");
         if (percent_score <= 20) {
-            img += "bad.png";
+            image.src="../img/worst.png"
             comment = "HMMM !";
         } else if (percent_score <= 40) {
-            img += "improve.png";
+            image.src="../img/improve.png"
             comment = "YOU CAN IMPROVE";
         } else if (percent_score <= 60) {
-            img += "ok.png";
+            image.src= "../img/ok.png"
             comment = "NOT BAD BUT...!";
         } else if (percent_score <= 80) {
-            img += "good.png"
+            image.src="../img/good.png";
             comment = "GOOD !";
 
         } else {
-            img += "best.png";
+            image.src = "../img/best.png";
             comment = "WONDERFUL";
         }
         //display score to DOM
+        dom_emoji.appendChild(image);
         dom_score_p.textContent = comment + " : " + percent_score + " %";
-        dom_emoji.src = img;
     })
 };

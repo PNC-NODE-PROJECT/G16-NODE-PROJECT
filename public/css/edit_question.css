@@ -110,11 +110,12 @@ dialog {
 }
 
 dialog header {
-    background: rgb(106, 104, 104);
+    background: rgb(7, 135, 0);
     color: #fff;
     font-size: 1.12rem;
     width: 100%;
     padding: 1rem;
+    font-weight: bold;
 }
 
 dialog section {

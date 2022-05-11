@@ -39,7 +39,7 @@ router.delete('/question/:id', (req, res) => {
         res.status(404).send({ "message": 'question id not found' })
     }
 })
-
+//edit button
 router.patch('/question/:id', (req, res) => {
     let edit_id = req.params.id;
     let edit_question = req.body.question;

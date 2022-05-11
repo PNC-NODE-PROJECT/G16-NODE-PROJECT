@@ -74,10 +74,12 @@ function display_questions(datas) {
 
 
         //edit button
+        let i = document.createElement("i");
+        i.className ="fa-solid fa-pen-to-square";
         let a_edit = document.createElement("a");
         a_edit.href = "#";
         a_edit.className = "edit";
-        a_edit.textContent = "EDIT";
+        a_edit.appendChild(i);
         a_edit.id = data.id;
         a_edit.addEventListener("click", () => {
             on_edit_question(a_edit.id);
@@ -86,6 +88,7 @@ function display_questions(datas) {
         delete_edit_div.appendChild(a_edit);
 
 
+        dom_questions_container.appendChild(card);
         let answers_container = document.createElement("div");
         answers_container.className = "answer-container";
         answers_container.id = question_id;
@@ -129,7 +132,6 @@ function display_questions(datas) {
         answers_container.appendChild(answer_4);
 
 
-        dom_questions_container.appendChild(card);
         card.appendChild(answers_container);
         card.appendChild(delete_edit_div)
 
@@ -226,7 +228,8 @@ function on_create_question() {
         if (isEditing()) {
             axios.patch("/api/question/" + questionId, new_question)
             .then((res)=> { refreshQuestions(); })
-            .error((err) => {    });
+            .error((err) => {  console.error("Can not edit!")  });
+     
 
         } else {
             axios.post("/api/question", new_question)
@@ -236,10 +239,10 @@ function on_create_question() {
     }
     else {
         let dom_question_text = document.getElementById("question_text");
-        dom_question_text.textContent = "Please input again"
+        dom_question_text.style.color="red";
+        dom_question_text.textContent = "Please input again";
     }
 }
-
 
 
 // delete question
